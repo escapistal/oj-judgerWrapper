@@ -1,7 +1,9 @@
 package com.xc.oj;
 
 import com.xc.oj.entity.JudgeResult;
+import com.xc.oj.entity.JudgeResultEnum;
 import com.xc.oj.entity.JudgeTask;
+import com.xc.oj.entity.SingleJudgeResult;
 import com.xc.oj.util.FTPUtil;
 import com.xc.oj.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,6 @@ public class JudgerWrapper extends Thread implements CommandLineRunner {
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
 
-    public void test(){
-        System.out.println(redisTemplate);
-    }
     @Override
     public void run() {
         while (true) {
@@ -49,14 +48,19 @@ public class JudgerWrapper extends Thread implements CommandLineRunner {
                 Random random=new Random();
                 int len=random.nextInt(9)+1;
                 for(int i=1;i<=len;i++){
-                    HashMap<String,String> res=new HashMap<>();
-                    res.put("id", String.valueOf(i));
-                    res.put("execTime",String.valueOf(random.nextInt(1000)));
-                    res.put("execMemory",String.valueOf(random.nextInt(1000)));
-                    if(Integer.valueOf(res.get("execTime"))<=500&&Integer.valueOf(res.get("execMemory"))<=500)
-                        res.put("result","AC");
+                    //TODO 经过评测得到耗时与内存，另有RE等要判
+                    int execTime=1000;
+                    int execMemory=1000;
+
+                    SingleJudgeResult res=new SingleJudgeResult();
+                    res.setExecTime(execTime);
+                    res.setExecMemory(execMemory);
+                    if(execTime>judgeTask.getTimeLimit())
+                        res.setResult(JudgeResultEnum.TLE);
+                    else if(execMemory>judgeTask.getMemoryLimit())
+                        res.setResult(JudgeResultEnum.MLE);
                     else
-                        res.put("result","WA");
+                        res.setResult(JudgeResultEnum.AC);
                     judgeResult.getDetail().add(res);
                     Thread.sleep(500);
 //                    Process ps=Runtime.getRuntime().exec(new String[]{"cmd.exe","dir"});

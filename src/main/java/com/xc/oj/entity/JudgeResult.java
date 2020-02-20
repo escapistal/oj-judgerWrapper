@@ -1,13 +1,12 @@
 package com.xc.oj.entity;
 
 import java.util.List;
-import java.util.Map;
 
 public class JudgeResult {
     private Long submissionId;
-    private Integer executeTime;
-    private Integer executeMemory;
-    private List<Map<String,String>> detail;
+    private Integer timeLimit;
+    private Integer memoryLimit;
+    private List<SingleJudgeResult> detail;
 
     public Long getSubmissionId() {
         return submissionId;
@@ -17,27 +16,27 @@ public class JudgeResult {
         this.submissionId = submissionId;
     }
 
-    public Integer getExecuteTime() {
-        return executeTime;
+    public Integer getTimeLimit() {
+        return timeLimit;
     }
 
-    public void setExecuteTime(Integer executeTime) {
-        this.executeTime = executeTime;
+    public void setTimeLimit(Integer timeLimit) {
+        this.timeLimit = timeLimit;
     }
 
-    public Integer getExecuteMemory() {
-        return executeMemory;
+    public Integer getMemoryLimit() {
+        return memoryLimit;
     }
 
-    public void setExecuteMemory(Integer executeMemory) {
-        this.executeMemory = executeMemory;
+    public void setMemoryLimit(Integer memoryLimit) {
+        this.memoryLimit = memoryLimit;
     }
 
-    public List<Map<String, String>> getDetail() {
+    public List<SingleJudgeResult> getDetail() {
         return detail;
     }
 
-    public void setDetail(List<Map<String, String>> detail) {
+    public void setDetail(List<SingleJudgeResult> detail) {
         this.detail = detail;
     }
 }

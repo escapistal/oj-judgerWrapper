@@ -10,6 +10,7 @@ public class JudgeTask implements Serializable {
     private String language;
     private String code;
     private String spjMd5;
+    private Boolean lazyEval;
 
     public Long getSubmissionId() {
         return submissionId;
@@ -65,5 +66,13 @@ public class JudgeTask implements Serializable {
 
     public void setSpjMd5(String spjMd5) {
         this.spjMd5 = spjMd5;
+    }
+
+    public Boolean getLazyEval() {
+        return lazyEval;
+    }
+
+    public void setLazyEval(Boolean lazyEval) {
+        this.lazyEval = lazyEval;
     }
 }
