@@ -4,8 +4,7 @@ import java.util.List;
 
 public class JudgeResult {
     private Long submissionId;
-    private Integer timeLimit;
-    private Integer memoryLimit;
+    private JudgeResultEnum result;
     private List<SingleJudgeResult> detail;
 
     public Long getSubmissionId() {
@@ -16,20 +15,12 @@ public class JudgeResult {
         this.submissionId = submissionId;
     }
 
-    public Integer getTimeLimit() {
-        return timeLimit;
+    public JudgeResultEnum getResult() {
+        return result;
     }
 
-    public void setTimeLimit(Integer timeLimit) {
-        this.timeLimit = timeLimit;
-    }
-
-    public Integer getMemoryLimit() {
-        return memoryLimit;
-    }
-
-    public void setMemoryLimit(Integer memoryLimit) {
-        this.memoryLimit = memoryLimit;
+    public void setResult(JudgeResultEnum result) {
+        this.result = result;
     }
 
     public List<SingleJudgeResult> getDetail() {

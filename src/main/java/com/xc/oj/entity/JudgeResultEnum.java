@@ -2,12 +2,14 @@ package com.xc.oj.entity;
 
 public enum JudgeResultEnum {
     PENDING("Pending"),
+    JUDGING("Judging"),
     AC("Accepted"),
     WA("Wrong Answer"),
     TLE("Time Limit Exceed"),
     MLE("Memory Limit Exceed"),
     RE("Runtime Error"),
     PE("Presentation Error"),
+    CE("Compile Error"),
     SE("System Error")
     ;
 
